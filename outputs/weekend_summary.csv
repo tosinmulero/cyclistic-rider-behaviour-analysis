@@ -1,0 +1,5 @@
+member_casual,day_type,total_rides,average_duration,median_duration
+casual,Weekday,1319499,16.96,10.24
+casual,Weekend,792548,21.24,12.94
+member,Weekday,2925359,11.71,8.4
+member,Weekend,889264,13.24,9.25
