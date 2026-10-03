@@ -16,3 +16,7 @@ Thumbs.db
 
 # Large analytical data files
 *.parquet
+
+# Local development
+.vscode/
+backups/

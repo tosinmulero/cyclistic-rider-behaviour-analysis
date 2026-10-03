@@ -1,216 +1,170 @@
-# Cyclistic Rider Behaviour Analysis
+<p align="center">
+  <img src="images/readme/hero.svg" alt="Cyclistic Rider Behaviour Analysis" width="100%">
+</p>
 
-## Project Overview
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square" alt="Python">
+  <img src="https://img.shields.io/badge/pandas-150458?style=flat-square" alt="pandas">
+  <img src="https://img.shields.io/badge/Power%20BI-F2C811?style=flat-square" alt="Power BI">
+  <img src="https://img.shields.io/badge/DAX-7C3AED?style=flat-square" alt="DAX">
+  <img src="https://img.shields.io/badge/Power%20Query-10B981?style=flat-square" alt="Power Query">
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=flat-square" alt="Jupyter">
+  <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square" alt="GitHub">
+</p>
 
-This project analyses approximately **5.93 million Cyclistic bike-share trips** covering **July 2025 to June 2026** to identify behavioural differences between annual members and casual riders.
+<p align="center"><b>Python • pandas • Power BI • DAX • Power Query • Behavioural Analytics</b></p>
 
-The project follows an end-to-end data analytics workflow, using **Python and pandas** for data preparation, cleaning and exploratory analysis, followed by **Power BI, Power Query and DAX** for dashboard development and business insight communication.
+An end-to-end rider-behaviour analytics case study covering approximately **5.93 million bike-share trips** from **July 2025 to June 2026**. The analysis compares annual members and casual riders across volume, duration, day-of-week, hourly demand, seasonality, bike type and weekday/weekend behaviour.
 
-The analysis explores ride volume, trip duration, day-of-week behaviour, hourly patterns, monthly trends, seasonality, bike-type usage and weekday versus weekend behaviour.
-
----
-
-## Business Objective
-
-The objective of this project is to understand how **members and casual riders use the Cyclistic bike-share service differently**.
-
-The analysis addresses questions such as:
-
-- What proportion of rides comes from members versus casual riders?
-- Which rider group takes longer trips?
-- Which days of the week are most popular?
-- At what times of day does demand peak?
-- How does ridership change throughout the year?
-- How does bike-type usage differ between rider groups?
-- How does weekday behaviour compare with weekend behaviour?
-- What seasonal patterns influence demand?
+> **Portfolio standard:** the repository is structured as an auditable analytics case study with business questions, data-quality controls, reproducible notebooks, dashboard evidence, limitations and automated repository checks.
 
 ---
 
-## Dashboard Preview
+## 🎯 Executive Snapshot
+
+| KPI | Result |
+| --- | ---: |
+| Total rides | **5.93M** |
+| Member rides | **3.81M** |
+| Casual rides | **2.11M** |
+| Member ride share | **64.36%** |
+| Casual ride share | **35.64%** |
+| Overall avg. ride duration | **14.38 min** |
+| Member avg. ride duration | **12.06 min** |
+| Casual avg. ride duration | **18.57 min** |
+
+---
+
+## 🧩 Business Problem
+
+Cyclistic needs to understand how annual members and casual riders behave differently so marketing and membership strategy can be targeted more effectively.
+
+The analysis addresses:
+
+1. How do member and casual rider volumes differ?
+2. Which group takes longer rides?
+3. When do rider groups use the service most heavily?
+4. How does demand change by month and season?
+5. How do weekday/weekend and bike-type patterns differ?
+6. Which behavioural patterns could support membership conversion?
+
+---
+
+## 🏗️ Analytical Architecture
+
+```mermaid
+flowchart LR
+    A["12 monthly trip files"] --> B["Python + pandas preparation"]
+    B --> C["Cleaning + validation"]
+    C --> D["Feature engineering"]
+    D --> E["Analytical aggregates"]
+    E --> F["Power BI + DAX"]
+    F --> G["Rider-behaviour dashboard"]
+```
+
+Full design: [`docs/TECHNICAL_ARCHITECTURE.md`](docs/TECHNICAL_ARCHITECTURE.md)
+
+---
+
+## 📊 Dashboard
 
 ![Cyclistic Power BI Dashboard](images/Cyclist_Powerbi_Dashboard.png)
 
 ---
 
-## Key Performance Indicators
+## 🔎 Key Findings
 
-| Metric | Result |
-|---|---:|
-| Total Rides | 5.93M |
-| Member Rides | 3.81M |
-| Casual Rides | 2.11M |
-| Member Ride Share | 64.36% |
-| Casual Ride Share | 35.64% |
-| Overall Average Ride Duration | 14.38 minutes |
-| Member Average Ride Duration | 12.06 minutes |
-| Casual Average Ride Duration | 18.57 minutes |
+- **Members account for 64.36% of rides**, indicating the larger base of recurring service usage.
+- **Casual riders take longer trips**, averaging **18.57 minutes** versus **12.06 minutes** for members.
+- Member activity shows clear commute-style peaks around **8 AM** and **5 PM**.
+- Casual usage is relatively more concentrated around weekends and leisure-oriented periods.
+- Ridership is strongly seasonal, with demand increasing in warmer months and falling in winter.
+- The behavioural split suggests that member and casual segments should not be marketed to identically.
 
 ---
 
-## Key Findings
+## 💼 Business Recommendations
 
-### 1. Members account for most rides
-
-Members generated **3,814,623 rides**, representing **64.36%** of all journeys.
-
-Casual riders generated **2,112,047 rides**, representing **35.64%**.
-
-This indicates that annual members represent the largest proportion of recurring bike-share activity.
-
-### 2. Casual riders take longer trips
-
-Casual riders recorded an average ride duration of approximately **18.57 minutes**, compared with **12.06 minutes** for members.
-
-This suggests that casual riders are more likely to use the service for longer, leisure-oriented journeys.
-
-### 3. Members show strong commuting behaviour
-
-Member activity shows clear weekday commuting patterns.
-
-Notable usage peaks occur around:
-
-- **8 AM**
-- **5 PM**
-
-The strong morning and evening peaks suggest that many members use the service for commuting and other routine journeys.
-
-### 4. Casual riders show stronger leisure behaviour
-
-Casual rider activity is relatively more concentrated around weekends and non-commuting periods.
-
-This indicates greater recreational and leisure-oriented usage compared with members.
-
-### 5. Ridership is seasonal
-
-Demand increases significantly during warmer periods and falls during winter.
-
-The seasonal pattern is visible across both member and casual rider groups, although casual ridership experiences greater variation.
-
-### 6. Monthly demand changes substantially throughout the year
-
-The monthly analysis shows a strong decline during the colder months followed by increasing ridership through spring and into summer.
-
-This demonstrates the importance of seasonality when interpreting bike-share demand.
+- Target frequent casual riders with membership-conversion messaging during high-demand spring and summer periods.
+- Use weekend and leisure-oriented campaigns for casual riders.
+- Position membership around convenience, frequent usage and commuting value.
+- Use daypart segmentation to align messaging with commute and leisure peaks.
+- Treat seasonal demand as a planning variable for acquisition and retention activity.
 
 ---
 
-## Business Recommendations
+## 🧠 Analytical Engineering
 
-Based on the analysis, Cyclistic could consider:
+The project demonstrates:
 
-1. Targeting frequent casual riders with membership promotions during high-demand spring and summer periods.
-2. Developing weekend-focused campaigns for casual riders who demonstrate stronger leisure usage.
-3. Promoting membership benefits around convenience, frequent usage and commuting.
-4. Using time-of-day segmentation to target riders during periods of high demand.
-5. Adapting promotional strategies according to seasonal changes in ridership.
-6. Identifying high-frequency casual riders as potential candidates for membership conversion campaigns.
-
----
-
-## Data Preparation
-
-The project combined 12 months of trip data into a single analytical dataset.
-
-Key preparation activities included:
-
-- Combining monthly datasets
-- Removing duplicate records
-- Validating timestamps
-- Calculating ride duration
-- Investigating invalid and extreme ride durations
-- Creating weekday features
-- Creating hourly features
-- Creating monthly features
-- Creating seasonal classifications
-- Creating weekday/weekend classifications
-- Validating rider categories
-- Exporting cleaned data for downstream analysis
-- Generating aggregated datasets for Power BI
-
-The cleaned dataset contained approximately **5.93 million valid rides**.
+- combining 12 monthly source files;
+- duplicate and timestamp validation;
+- ride-duration quality checks;
+- derived weekday, hour, month, season and weekend features;
+- Parquet/CSV analytical outputs;
+- pandas-based exploratory analysis;
+- Power BI dashboard engineering;
+- DAX measures and Power Query preparation;
+- source-controlled notebooks and documentation.
 
 ---
 
-## Exploratory Data Analysis
+## 🧰 Technology Stack
 
-Exploratory analysis was carried out in Python to understand:
+<p>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square" alt="Python">
+  <img src="https://img.shields.io/badge/pandas-150458?style=flat-square" alt="pandas">
+  <img src="https://img.shields.io/badge/Power%20BI-F2C811?style=flat-square" alt="Power BI">
+  <img src="https://img.shields.io/badge/DAX-7C3AED?style=flat-square" alt="DAX">
+  <img src="https://img.shields.io/badge/Power%20Query-10B981?style=flat-square" alt="Power Query">
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=flat-square" alt="Jupyter">
+  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square" alt="Git">
+  <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square" alt="GitHub">
+</p>
 
-- Rider distribution
-- Average and median ride duration
-- Day-of-week patterns
-- Hourly riding patterns
-- Monthly trends
-- Seasonal behaviour
-- Bike-type preferences
-- Weekday versus weekend usage
-
-The analysis was then translated into an interactive Power BI dashboard.
-
----
-
-## Power BI Dashboard
-
-The Power BI dashboard contains the following visuals:
-
-- Total Rides KPI
-- Member Rides KPI
-- Casual Rides KPI
-- Average Ride Duration KPI
-- Member vs Casual Ride Share
-- Rides by Day of Week
-- Rides by Hour of Day
-- Monthly Ride Trend
-- Seasonal Ride Patterns
-- Bike Type Usage by Rider Type
-- Weekday vs Weekend Riding
-- Key Insights
-
-Consistent visual formatting was used throughout the dashboard:
-
-- **Member riders:** Blue
-- **Casual riders:** Orange
+**Python · pandas · Jupyter Notebook · Power BI · Power Query · DAX · CSV · Parquet · Git · GitHub · VS Code**
 
 ---
 
-## Tools & Technologies
+## ✅ Quality & Reproducibility
 
-- **Python**
-- **Pandas**
-- **Jupyter Notebook**
-- **Power BI**
-- **Power Query**
-- **DAX**
-- **CSV**
-- **Parquet**
-- **Git**
-- **GitHub**
-- **Visual Studio Code**
+The repository includes an automated **Portfolio Quality** workflow validating required assets and notebook JSON integrity.
+
+The analytical workflow also includes duplicate checks, timestamp validation, ride-duration investigation and rider-category validation.
 
 ---
 
-## Project Structure
+## ⚖️ Methodology & Limitations
+
+- The analysis is observational; behavioural patterns should not be interpreted as causal.
+- Weather is likely to affect bike-share demand but is not directly modelled.
+- Membership recommendations are analytical hypotheses and should be validated through controlled campaigns.
+- The analysis period covers one year, so longer-term structural trends are outside scope.
+
+---
+
+## 📁 Repository Structure
 
 ```text
-04_analysis/
-│
+cyclistic-rider-behaviour-analysis/
+├── .github/workflows/portfolio-quality.yml
+├── docs/
+│   ├── RECRUITER_PROJECT_SUMMARY.md
+│   └── TECHNICAL_ARCHITECTURE.md
 ├── images/
-│   └── cyclistic_powerbi_dashboard.png
-│
+│   ├── readme/hero.svg
+│   └── Cyclist_Powerbi_Dashboard.png
 ├── outputs/
-│   ├── bike_type_summary.csv
-│   ├── kpi_summary.csv
-│   ├── rider_summary.csv
-│   ├── rides_by_day.csv
-│   ├── rides_by_hour.csv
-│   ├── rides_by_month.csv
-│   ├── season_summary.csv
-│   └── weekend_summary.csv
-│
 ├── powerbi/
-│   └── Cyclistic_Rider_Behaviour_Dashboard.pbix
-│
 ├── 01_data_preparation.ipynb
 ├── 02_data_cleaning.ipynb
 ├── 03_exploratory_analysis.ipynb
 └── README.md
+```
+
+---
+
+## 👨🏾‍💻 Author
+
+**Oluwatosin Oluwaseun Mulero**  
+**Data Analyst | Data Scientist | Business Intelligence**
