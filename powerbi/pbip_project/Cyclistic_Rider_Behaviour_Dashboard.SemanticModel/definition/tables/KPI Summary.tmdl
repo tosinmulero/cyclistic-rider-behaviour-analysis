@@ -1,0 +1,125 @@
+table 'KPI Summary'
+	lineageTag: b5c08250-30de-425a-a159-f6bf272184a5
+
+	measure 'Member Rides' =
+			
+			FORMAT(
+			    CALCULATE(
+			        SUM('KPI Summary'[Total Rides]),
+			        'KPI Summary'[member_casual] = "member"
+			    ) / 1000000,
+			    "0.00"
+			) & "M"
+		lineageTag: 49537efe-15d6-4c7d-899f-1861f4860193
+
+	measure 'Casual Rides' =
+			
+			FORMAT(
+			    CALCULATE(
+			        SUM('KPI Summary'[Total Rides]),
+			        'KPI Summary'[member_casual] = "casual"
+			    ) / 1000000,
+			    "0.00"
+			) & "M"
+		lineageTag: 341e5ef9-a04e-4e2c-9b8c-56191f840291
+
+	measure 'Average Ride Duration' =
+			
+			DIVIDE(
+			    SUMX(
+			        'KPI Summary',
+			        'KPI Summary'[Total Rides] * 'KPI Summary'[average_ride_minutes]
+			    ),
+			    SUM('KPI Summary'[Total Rides])
+			)
+		lineageTag: 8cd3c61f-f9ae-4553-8b5f-b88a2e368491
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Ride Duration Display' =
+			
+			FORMAT(
+			    [Average Ride Duration],
+			    "0.00"
+			) & " min"
+		lineageTag: 7bd7ee3b-9d00-4f8a-897e-7fb344a32b2f
+
+	column member_casual
+		dataType: string
+		lineageTag: 7bcf8119-2703-4cde-a891-db6cbef88619
+		summarizeBy: none
+		sourceColumn: member_casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Rides'
+		dataType: int64
+		formatString: 0
+		lineageTag: cde9e753-11f8-4562-849c-ed976ff08635
+		summarizeBy: sum
+		sourceColumn: Total Rides
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_ride_minutes
+		dataType: double
+		lineageTag: ebdd6f30-345d-4d82-8fd7-bba26426e183
+		summarizeBy: sum
+		sourceColumn: average_ride_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_ride_minutes
+		dataType: double
+		lineageTag: 7aba0045-b719-458a-916a-38bb35005478
+		summarizeBy: sum
+		sourceColumn: median_ride_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column most_common_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b28fc9e-4109-475d-b753-e5922b5b5d20
+		summarizeBy: sum
+		sourceColumn: most_common_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column most_common_day
+		dataType: string
+		lineageTag: 3e442d00-67a3-46ab-9d96-53bf1672eeb0
+		summarizeBy: none
+		sourceColumn: most_common_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column ride_share_percent
+		dataType: double
+		lineageTag: 8b09995f-bf44-4af3-93ae-1dc0bb42887f
+		summarizeBy: sum
+		sourceColumn: ride_share_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'KPI Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\OLUWATOSIN OLUWASEUN\Downloads\Cyclistic_Bike_Share_Case_Study\04_analysis\outputs\kpi_summary.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"member_casual", type text}, {"total_rides", Int64.Type}, {"average_ride_minutes", type number}, {"median_ride_minutes", type number}, {"most_common_hour", Int64.Type}, {"most_common_day", type text}, {"ride_share_percent", type number}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"total_rides", "Total Rides"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

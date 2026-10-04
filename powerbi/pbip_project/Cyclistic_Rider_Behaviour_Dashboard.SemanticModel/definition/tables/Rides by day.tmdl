@@ -1,0 +1,61 @@
+table 'Rides by day'
+	lineageTag: dabc7d17-ae61-41e3-97c4-4e2544c6d61e
+
+	column day_of_week
+		dataType: string
+		lineageTag: 47df060b-3246-430e-8048-d872e3a1e053
+		summarizeBy: none
+		sourceColumn: day_of_week
+		sortByColumn: 'Day Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column member_casual
+		dataType: string
+		lineageTag: 645d78c2-30ac-4538-9a40-a8595ed38a0f
+		summarizeBy: none
+		sourceColumn: member_casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_rides
+		dataType: int64
+		formatString: 0
+		lineageTag: a0dc0abd-bb44-4b81-b375-1a8cb612d6f0
+		summarizeBy: sum
+		sourceColumn: total_rides
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Sort'
+		dataType: string
+		lineageTag: 722edc8a-3790-4326-b213-7bd1c056cdab
+		summarizeBy: none
+		sourceColumn: Day Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Rides by day' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\OLUWATOSIN OLUWASEUN\Downloads\Cyclistic_Bike_Share_Case_Study\04_analysis\outputs\rides_by_day.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"day_of_week", type text}, {"member_casual", type text}, {"total_rides", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Day Sort", each if [day_of_week] = "Monday" then 1
+				else if [day_of_week] = "Tuesday" then 2
+				else if [day_of_week] = "Wednesday" then 3
+				else if [day_of_week] = "Thursday" then 4
+				else if [day_of_week] = "Friday" then 5
+				else if [day_of_week] = "Saturday" then 6
+				else if [day_of_week] = "Sunday" then 7
+				else null)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

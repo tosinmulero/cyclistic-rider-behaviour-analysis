@@ -1,0 +1,78 @@
+table 'Season Summary'
+	lineageTag: a4cdfabd-88e4-43db-9301-097edcd87228
+
+	column season
+		dataType: string
+		lineageTag: b1647a2b-382b-4593-b57d-17d8e1402588
+		summarizeBy: none
+		sourceColumn: season
+		sortByColumn: 'Season Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column member_casual
+		dataType: string
+		lineageTag: c812cbaf-178e-4b38-9e20-dd0a8ca2a34b
+		summarizeBy: none
+		sourceColumn: member_casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_rides
+		dataType: int64
+		formatString: 0
+		lineageTag: ad8b7a90-b621-48aa-a3db-20025b8c0f51
+		summarizeBy: sum
+		sourceColumn: total_rides
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_duration
+		dataType: double
+		lineageTag: c8394474-e250-4d51-a099-84d0fe657adb
+		summarizeBy: sum
+		sourceColumn: average_duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_duration
+		dataType: double
+		lineageTag: e55190ba-55b6-41e6-9359-172455ee0052
+		summarizeBy: sum
+		sourceColumn: median_duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Season Sort'
+		dataType: string
+		lineageTag: b066fcc0-3817-4abe-ba10-f14ea3f7aff6
+		summarizeBy: none
+		sourceColumn: Season Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Season Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\OLUWATOSIN OLUWASEUN\Downloads\Cyclistic_Bike_Share_Case_Study\04_analysis\outputs\season_summary.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"season", type text}, {"member_casual", type text}, {"total_rides", Int64.Type}, {"average_duration", type number}, {"median_duration", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Season Sort", each if [season] = "Spring" then 1
+				else if [season] = "Summer" then 2
+				else if [season] = "Autumn" then 3
+				else if [season] = "Winter" then 4
+				else null)
+				in
+				    #"Added Custom"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

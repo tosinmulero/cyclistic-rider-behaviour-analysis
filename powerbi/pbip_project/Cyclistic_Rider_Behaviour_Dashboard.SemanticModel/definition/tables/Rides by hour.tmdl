@@ -1,0 +1,43 @@
+table 'Rides by hour'
+	lineageTag: 31d9868e-d17f-4ab7-a2f1-38b745cfe789
+
+	column start_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: c998fbf5-fb69-4ccc-a8a1-c4a0891b029b
+		summarizeBy: sum
+		sourceColumn: start_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column member_casual
+		dataType: string
+		lineageTag: a7a7bda2-95fb-4f07-9e8b-47e71d0e1b2c
+		summarizeBy: none
+		sourceColumn: member_casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_rides
+		dataType: int64
+		formatString: 0
+		lineageTag: ec45333b-70d0-4d73-9c9f-32cf66aac5ca
+		summarizeBy: sum
+		sourceColumn: total_rides
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Rides by hour' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\OLUWATOSIN OLUWASEUN\Downloads\Cyclistic_Bike_Share_Case_Study\04_analysis\outputs\rides_by_hour.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"start_hour", Int64.Type}, {"member_casual", type text}, {"total_rides", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

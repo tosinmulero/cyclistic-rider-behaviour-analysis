@@ -1,0 +1,35 @@
+relationship 63bd9d27-1fc0-4730-8461-7b22f1769427
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Rides by Month'.month
+	toColumn: LocalDateTable_3dc0ea81-44f7-441f-957e-005f805f42a4.Date
+
+relationship AutoDetected_2aaf6d4a-8f4d-4024-9016-03e263178125
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Rider Summary'.member_casual
+	toColumn: 'KPI Summary'.member_casual
+
+relationship AutoDetected_dc78b274-8b36-4b5d-a2de-ce1d27147825
+	fromColumn: 'Rides by day'.member_casual
+	toColumn: 'KPI Summary'.member_casual
+
+relationship AutoDetected_a0442db5-fbbc-4bfe-9ca9-59fc72721783
+	fromColumn: 'Rides by hour'.member_casual
+	toColumn: 'KPI Summary'.member_casual
+
+relationship AutoDetected_8a89d67d-b96b-4169-beb8-8381f423af00
+	fromColumn: 'Rides by Month'.member_casual
+	toColumn: 'KPI Summary'.member_casual
+
+relationship AutoDetected_32804cbf-e83e-49ec-bd31-913c0ed39794
+	fromColumn: 'Season Summary'.member_casual
+	toColumn: 'KPI Summary'.member_casual
+
+relationship AutoDetected_53f881de-f0dd-4ec3-b5e3-0ccbd0b0fd8e
+	fromColumn: 'Bike type Summary'.member_casual
+	toColumn: 'KPI Summary'.member_casual
+
+relationship AutoDetected_73815a75-5538-41f0-88c4-39e6e4f9e86f
+	fromColumn: 'Weekend Summary'.member_casual
+	toColumn: 'KPI Summary'.member_casual
+

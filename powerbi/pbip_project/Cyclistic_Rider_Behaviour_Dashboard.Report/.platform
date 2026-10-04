@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Cyclistic_Rider_Behaviour_Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "84a66909-a4ea-407b-b71d-3b6ba9c8f3f9"
+  }
+}
