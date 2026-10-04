@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Cyclistic_Rider_Behaviour_Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c5a5b1cc-ebee-47c5-abe5-9853013ea544"
+  }
+}

@@ -1,0 +1,64 @@
+table 'Rides by Month'
+	lineageTag: d5dca2d9-0fe4-45d8-82fe-c76ffaeba215
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 81c51c05-3fae-4a72-9043-500c33eef2e5
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: 63bd9d27-1fc0-4730-8461-7b22f1769427
+			defaultHierarchy: LocalDateTable_3dc0ea81-44f7-441f-957e-005f805f42a4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column member_casual
+		dataType: string
+		lineageTag: e901c04e-a46a-4722-9ce3-7c8384223829
+		summarizeBy: none
+		sourceColumn: member_casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_rides
+		dataType: int64
+		formatString: 0
+		lineageTag: 874fbc3d-5cb2-4a43-921e-3767c76e4f6c
+		summarizeBy: sum
+		sourceColumn: total_rides
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Label' =
+			
+			FORMAT(
+			    'Rides by Month'[month],
+			    "MMM yyyy"
+			)
+		lineageTag: 194f035c-7bea-4897-a2a1-1a831f216d13
+		summarizeBy: none
+		sortByColumn: month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Rides by Month' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\OLUWATOSIN OLUWASEUN\Downloads\Cyclistic_Bike_Share_Case_Study\04_analysis\outputs\rides_by_month.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"month", type date}, {"member_casual", type text}, {"total_rides", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

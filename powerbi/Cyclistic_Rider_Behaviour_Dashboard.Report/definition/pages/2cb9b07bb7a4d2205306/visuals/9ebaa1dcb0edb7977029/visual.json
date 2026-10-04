@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "9ebaa1dcb0edb7977029",
+  "position": {
+    "x": 1373.3333333333333,
+    "y": 822.22222222222217,
+    "z": 14000,
+    "height": 257.77777777777777,
+    "width": 546.66666666666663,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "•",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontSize": "16pt"
+                    }
+                  },
+                  {
+                    "value": "Members account for 64.36% of all rides, compared with 35.64% for casual riders.",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "16pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Casual riders take longer trips on average — 18.57 minutes versus 12.06 minutes for members.",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "16pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Member activity is strongest during weekday commuting periods, especially around 8 AM and 5 PM.",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "16pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Casual rider activity is more concentrated around weekends and leisure-oriented periods.",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "16pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Ridership is highly seasonal, with stronger demand during warmer months and lower activity during winter.",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "16pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

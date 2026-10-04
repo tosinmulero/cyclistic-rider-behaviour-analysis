@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["KPI Summary","Rider Summary","Rides by day","Rides by hour","Rides by Month","Season Summary","Bike type Summary","Weekend Summary"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'KPI Summary'
+ref table 'Rider Summary'
+ref table 'Rides by day'
+ref table 'Rides by hour'
+ref table 'Rides by Month'
+ref table DateTableTemplate_d65b5088-f8f3-48d7-81dd-ceeefa282a01
+ref table LocalDateTable_3dc0ea81-44f7-441f-957e-005f805f42a4
+ref table 'Season Summary'
+ref table 'Bike type Summary'
+ref table 'Weekend Summary'
+
+ref cultureInfo en-US
+

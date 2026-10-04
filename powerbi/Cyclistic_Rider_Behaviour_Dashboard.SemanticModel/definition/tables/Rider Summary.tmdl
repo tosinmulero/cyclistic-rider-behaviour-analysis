@@ -1,0 +1,64 @@
+table 'Rider Summary'
+	lineageTag: c9ec9832-86eb-463c-a616-d2f05b843a8f
+
+	column member_casual
+		dataType: string
+		lineageTag: d8578a56-5630-48a0-8922-86b2ba64e08e
+		summarizeBy: none
+		sourceColumn: member_casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_rides
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a4a50c3-cfee-41f8-9135-2197b73777f2
+		summarizeBy: sum
+		sourceColumn: total_rides
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_ride_minutes
+		dataType: double
+		lineageTag: 9478f4bf-0583-4fdf-8e0d-ca70cecd1307
+		summarizeBy: sum
+		sourceColumn: average_ride_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_ride_minutes
+		dataType: double
+		lineageTag: 466a371a-628e-45e1-8cbc-c2c2be57f5e0
+		summarizeBy: sum
+		sourceColumn: median_ride_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ride_share_percent
+		dataType: double
+		lineageTag: f76e909c-d999-47b2-8a37-8eef0df84daf
+		summarizeBy: sum
+		sourceColumn: ride_share_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Rider Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\OLUWATOSIN OLUWASEUN\Downloads\Cyclistic_Bike_Share_Case_Study\04_analysis\outputs\rider_summary.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"member_casual", type text}, {"total_rides", Int64.Type}, {"average_ride_minutes", type number}, {"median_ride_minutes", type number}, {"ride_share_percent", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

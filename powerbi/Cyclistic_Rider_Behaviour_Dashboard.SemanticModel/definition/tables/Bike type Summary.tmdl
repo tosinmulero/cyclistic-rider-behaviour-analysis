@@ -1,0 +1,65 @@
+table 'Bike type Summary'
+	lineageTag: 7684f2ed-6e55-4b35-a7f6-5ee02d0ec990
+
+	measure 'Total Rides' =
+			
+			FORMAT(
+			    SUM('KPI Summary'[Total Rides]) / 1000000,
+			    "0.00"
+			) & "M"
+		lineageTag: 11337ace-c6ea-4c96-9020-9edcb5450881
+
+	measure Measure
+		lineageTag: 5fe57820-c9af-4620-808b-0a6518a6115f
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	column rideable_type
+		dataType: string
+		lineageTag: 9eeb84a7-7125-4413-9095-366f4ec51169
+		summarizeBy: none
+		sourceColumn: rideable_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column member_casual
+		dataType: string
+		lineageTag: 43fb21dc-52ed-4f97-affe-846c23b29207
+		summarizeBy: none
+		sourceColumn: member_casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_rides
+		dataType: int64
+		formatString: 0
+		lineageTag: 2134064c-7302-47c3-8eb8-b90d515daa93
+		summarizeBy: sum
+		sourceColumn: total_rides
+
+		annotation SummarizationSetBy = Automatic
+
+	column percentage_within_rider_type
+		dataType: double
+		lineageTag: ef215bb4-8e63-46de-b47a-38193d6843f9
+		summarizeBy: sum
+		sourceColumn: percentage_within_rider_type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Bike type Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\OLUWATOSIN OLUWASEUN\Downloads\Cyclistic_Bike_Share_Case_Study\04_analysis\outputs\bike_type_summary.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"rideable_type", type text}, {"member_casual", type text}, {"total_rides", Int64.Type}, {"percentage_within_rider_type", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

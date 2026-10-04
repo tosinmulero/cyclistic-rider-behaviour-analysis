@@ -1,0 +1,62 @@
+table 'Weekend Summary'
+	lineageTag: 69ca5699-cf21-4edb-a84f-fe9fe1643e1c
+
+	column member_casual
+		dataType: string
+		lineageTag: 6097673b-6109-4672-bc82-df979c0ebb7f
+		summarizeBy: none
+		sourceColumn: member_casual
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_type
+		dataType: string
+		lineageTag: de17047f-5b48-4eac-8e6b-ee2291045919
+		summarizeBy: none
+		sourceColumn: day_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_rides
+		dataType: int64
+		formatString: 0
+		lineageTag: fe097a3d-d479-4311-874f-31b969606cf0
+		summarizeBy: sum
+		sourceColumn: total_rides
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_duration
+		dataType: double
+		lineageTag: 55e3bf87-5f2f-44dc-8ce0-93a51b193fd1
+		summarizeBy: sum
+		sourceColumn: average_duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column median_duration
+		dataType: double
+		lineageTag: 28202ac3-280a-4d38-95fb-ca3eefb2fab3
+		summarizeBy: sum
+		sourceColumn: median_duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Weekend Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\OLUWATOSIN OLUWASEUN\Downloads\Cyclistic_Bike_Share_Case_Study\04_analysis\outputs\weekend_summary.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"member_casual", type text}, {"day_type", type text}, {"total_rides", Int64.Type}, {"average_duration", type number}, {"median_duration", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

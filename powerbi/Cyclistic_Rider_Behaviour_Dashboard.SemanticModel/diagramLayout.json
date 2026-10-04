@@ -1,0 +1,126 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 43.200000762939453,
+        "y": 172.80000305175781
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 622.13402662563908,
+            "y": 68.395456928123053
+          },
+          "nodeIndex": "Bike type Summary",
+          "nodeLineageTag": "7684f2ed-6e55-4b35-a7f6-5ee02d0ec990",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 437.71069711948644,
+            "y": 299.87581575589923
+          },
+          "nodeIndex": "KPI Summary",
+          "nodeLineageTag": "b5c08250-30de-425a-a159-f6bf272184a5",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 115.35144238037378,
+            "y": 460.00697319040569
+          },
+          "nodeIndex": "Rider Summary",
+          "nodeLineageTag": "c9ec9832-86eb-463c-a616-d2f05b843a8f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 727.67844974998127,
+            "y": 323.69041527870621
+          },
+          "nodeIndex": "Rides by day",
+          "nodeLineageTag": "dabc7d17-ae61-41e3-97c4-4e2544c6d61e",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 300.6558888062566,
+            "y": -50
+          },
+          "nodeIndex": "Rides by hour",
+          "nodeLineageTag": "31d9868e-d17f-4ab7-a2f1-38b745cfe789",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 691.21755468821925,
+            "y": 603.08373658596884
+          },
+          "nodeIndex": "Rides by Month",
+          "nodeLineageTag": "d5dca2d9-0fe4-45d8-82fe-c76ffaeba215",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 401.86721317831319,
+            "y": 707.38911817819064
+          },
+          "nodeIndex": "Season Summary",
+          "nodeLineageTag": "a4cdfabd-88e4-43db-9301-097edcd87228",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 156.70878941394255
+          },
+          "nodeIndex": "Weekend Summary",
+          "nodeLineageTag": "69ca5699-cf21-4edb-a84f-fe9fe1643e1c",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
