@@ -20,6 +20,12 @@ An end-to-end rider-behaviour analytics case study covering approximately **5.93
 
 ---
 
+## Recruiter quick review
+
+**[Read the dedicated portfolio case study](https://tosinmulero.github.io/data-analytics-portfolio/case-studies/cyclistic-rider-behaviour-analysis.html)** · **[Open the evidence guide](docs/RECRUITER_GUIDE.md)** · [View a project visual](images/Cyclist_Powerbi_Dashboard.png)
+
+The evidence guide links the business question, documented results, methodology and source artefacts without relying on unverified claims.
+
 ## 🎯 Executive Snapshot
 
 | KPI | Result |
